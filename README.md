@@ -6,6 +6,8 @@ https://docs.docker.com/get-started/
 
 https://www.youtube.com/watch?v=pGYAg7TMmp0
 
+https://www.digitalocean.com/community/tutorials/como-instalar-e-usar-o-docker-no-ubuntu-16-04-pt
+
 # ELK
 An Introduction to the ELK Stack (Now the Elastic Stack)
 https://www.elastic.co/webinars/introduction-elk-stack (videos)
