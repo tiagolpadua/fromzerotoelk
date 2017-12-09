@@ -2,6 +2,9 @@
 Passos para criar uma stack Elasticsearch, Logstash e Kibana
 
 # Docker
+https://docs.docker.com/get-started/
+
+https://www.youtube.com/watch?v=pGYAg7TMmp0
 
 # ELK
 An Introduction to the ELK Stack (Now the Elastic Stack)
