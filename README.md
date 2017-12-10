@@ -5,6 +5,7 @@ Passos para criar uma stack Elasticsearch, Logstash e Kibana
 https://docs.docker.com/get-started/
 
 Docker Tutorial - What is Docker & Docker Containers, Images, etc? (7min)
+
 https://www.youtube.com/watch?v=pGYAg7TMmp0
 
 https://www.digitalocean.com/community/tutorials/como-instalar-e-usar-o-docker-no-ubuntu-16-04-pt
