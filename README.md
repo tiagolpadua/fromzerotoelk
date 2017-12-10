@@ -31,7 +31,7 @@ https://elk-docker.readthedocs.io/
 # Filebeat
 https://www.elastic.co/products/beats/filebeat
 
-https://www.elastic.co/videos/getting-started-with-filebeat?baymax=rtp&storm=beats&elektra=product&iesrc=ctr
+https://www.elastic.co/videos/getting-started-with-filebeat?baymax=rtp&storm=beats&elektra=product&iesrc=ctr (4min)
 
 # Logstash
 
