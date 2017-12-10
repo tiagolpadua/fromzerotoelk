@@ -40,7 +40,38 @@ https://www.elastic.co/videos/getting-started-with-filebeat?baymax=rtp&storm=bea
 # Kibana
 
 # Passo a Passo
+
+## Máquina que irá executar a pilha ELK
+```bash
+docker pull sebp/elk
+docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk
+docker start elk (-a para attached)
+docker exec -it elk /bin/bash
+docker stop elk
+docker ps
+docker images 
+docker save -o elk_image.docker sebp/elk
+docker load elk_image.docker
+```
+
+* 5601 (Kibana web interface) - http://localhost:5601
+* 9200 (Elasticsearch JSON interface) - Listar todos os logs: http://localhost:9200/_search?pretty
+* 5044 (Logstash Beats interface, receives logs from Beats such as Filebeat – see the Forwarding logs with Filebeat section).
+
+### Remover necessidade de ssl temporariamente
+/etc/logstash/conf.d/02-beats-input.conf
+```
+input {
+  beats {
+    port => 5044
+  }
+}
+```
+
+
 ## Máquina que irá gerar os logs
+
+### Vagrant trusty
 Será utilizado uma imagem Vagrant - https://app.vagrantup.com/ubuntu/boxes/trusty64
 
 ```bash
@@ -56,6 +87,7 @@ vagrant up
 vagrant ssh
 ```
 
+### Apache2
 Instalar o apache2 (https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-16-04):
 ```bash
 sudo apt-get update
@@ -65,21 +97,13 @@ sudo apachectl start
 
 No host, testar o endereço http://localhost:8080, deve exibir a página inicial do apache.
 
-Ainda falta configurar o Filebeat, mas é melhor configurar após a máquina do ELK estar funcionando
-
-## Máquina que irá executar a pilha ELK
+### Filebeat
 ```bash
-docker pull sebp/elk
-docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk
-docker start elk (-a para attached)
-docker stop elk
-docker ps
-docker images 
-docker save -o elk_image.docker sebp/elk
-docker load elk_image.docker
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.1-amd64.deb
+sudo dpkg -i filebeat-6.0.1-amd64.deb
+sudo /etc/init.d/filebeat start
+sudo /etc/init.d/filebeat stop
 ```
 
-* 5601 (Kibana web interface) - http://localhost:5601
-* 9200 (Elasticsearch JSON interface) - Listar todos os logs: http://localhost:9200/_search?pretty
-* 5044 (Logstash Beats interface, receives logs from Beats such as Filebeat – see the Forwarding logs with Filebeat section).
+Arquivo de configuração: /etc/filebeat/filebeat.yml
 
