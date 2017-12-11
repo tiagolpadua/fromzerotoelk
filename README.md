@@ -58,7 +58,7 @@ docker load elk_image.docker
 * 9200 (Elasticsearch JSON interface) - Listar todos os logs: http://localhost:9200/_search?pretty
 * 5044 (Logstash Beats interface, receives logs from Beats such as Filebeat – see the Forwarding logs with Filebeat section).
 
-### Remover necessidade de ssl temporariamente
+### Remover necessidade de ssl temporariamente e incluir o filtro grok para apache:
 /etc/logstash/conf.d/02-beats-input.conf
 ```
 input {
@@ -66,6 +66,12 @@ input {
     port => 5044
   }
 }
+filter {
+    grok {
+        match => { "message" => "%{COMBINEDAPACHELOG}"}
+    }
+}
+
 ```
 
 
@@ -106,4 +112,20 @@ sudo /etc/init.d/filebeat stop
 ```
 
 Arquivo de configuração: /etc/filebeat/filebeat.yml
+```yml
+filebeat.prospectors:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/apache2/*.log
+output.logstash:
+  enabled: true
+  hosts: ["elk:5044"]
+```
+Onde 'elk' é o ip da máquina que receberá os logs
 
+Gerando tráfego:
+```bash
+sudo apt-get install apache2-utils
+ab -n 500000 -c 10 http://localhost:8080
+```
