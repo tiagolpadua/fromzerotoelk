@@ -34,10 +34,13 @@ https://www.elastic.co/products/beats/filebeat
 https://www.elastic.co/videos/getting-started-with-filebeat?baymax=rtp&storm=beats&elektra=product&iesrc=ctr (4min)
 
 # Logstash
+https://www.elastic.co/products/logstash
 
 # Elastic Search
+https://www.elastic.co/products/elasticsearch
 
 # Kibana
+https://www.elastic.co/products/kibana
 
 # Passo a Passo
 
