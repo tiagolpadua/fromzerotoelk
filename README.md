@@ -71,9 +71,7 @@ filter {
         match => { "message" => "%{COMBINEDAPACHELOG}"}
     }
 }
-
 ```
-
 
 ## Máquina que irá gerar os logs
 
@@ -129,3 +127,10 @@ Gerando tráfego:
 sudo apt-get install apache2-utils
 ab -n 500000 -c 10 http://localhost:8080
 ```
+
+TODO:
+Suporte a logs do weblogic:
+https://kuther.net/blog/indexing-and-searching-weblogic-logs-using-logstash-elasticsearch-and-kibana
+
+Remover dados antigos:
+https://www.elastic.co/blog/curator-tending-your-time-series-indices
